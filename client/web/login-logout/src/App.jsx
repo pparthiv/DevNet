@@ -1,37 +1,17 @@
-import { useState } from 'react'
-import './App.css'
-
+import { useState } from "react";
+import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 function App() {
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  
   return (
-    <div className='main'>
-      <h1>Login</h1>
-      <form className='signup-form'>
-        <input 
-          type="email" 
-          placeholder="Email" 
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <input 
-          type="password" 
-          placeholder="Password" 
-          required
-          value={password}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <button className='submit-btn' onClick={login}>
-          Login
-        </button>
-      </form>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SignIn/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
