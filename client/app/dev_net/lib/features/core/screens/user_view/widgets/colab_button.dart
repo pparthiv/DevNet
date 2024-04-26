@@ -9,26 +9,25 @@ class ColabButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 34, 33, 33),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(width: 0.6, color: MyAppColors.grey)),
+          color: MyAppColors.primary,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(width: 0.6, color: MyAppColors.primary)),
       child: Row(
         children: [
           Icon(
-            Icons.people,
-            color: MyAppColors.darkGrey,
+            Icons.add_circle,
           ),
           SizedBox(
             width: 7,
           ),
           Text(
-            "Colab +",
+            "Colab Request",
             style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: MyAppColors.grey),
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+            ),
           )
         ],
       ),

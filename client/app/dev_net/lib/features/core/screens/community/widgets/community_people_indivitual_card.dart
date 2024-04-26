@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:dev_net/features/core/screens/user_view/user_view.dart';
 import 'package:dev_net/utils/constants/colors.dart';
 import 'package:dev_net/utils/constants/images_strings.dart';

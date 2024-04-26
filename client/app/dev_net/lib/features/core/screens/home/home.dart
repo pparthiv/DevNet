@@ -1,12 +1,15 @@
 import 'package:dev_net/features/core/screens/home/widgets/home_header.dart';
 import 'package:dev_net/features/core/screens/home/widgets/home_search_bar.dart';
-import 'package:dev_net/features/core/screens/home/widgets/indivitual_person_near_you_card.dart';
+import 'package:dev_net/features/core/screens/home/widgets/card_design.dart';
 import 'package:dev_net/common/widgets/user_skill_chip.dart';
+import 'package:dev_net/features/core/screens/user_view/user_view.dart';
 import 'package:dev_net/utils/constants/colors.dart';
 import 'package:dev_net/utils/constants/images_strings.dart';
 import 'package:dev_net/utils/helpers/helper_function.dart';
 import 'package:dev_net/utils/validators/validation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 
 class Home extends StatelessWidget {
@@ -84,10 +87,10 @@ class Home extends StatelessWidget {
               ),
 
               for (int i = 0; i < 5; i++) ...[
-                const Column(
+                Column(
                   children: [
                     // Person Near You
-                    IndivitualPersonNearYouCard(),
+                    CardDesign(onTap: () => Get.to(() => UserView())),
                     SizedBox(
                       height: 10,
                     )

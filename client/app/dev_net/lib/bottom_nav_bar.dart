@@ -1,5 +1,6 @@
 import 'package:dev_net/features/core/screens/community/community.dart';
 import 'package:dev_net/features/core/screens/home/home.dart';
+import 'package:dev_net/features/personalization/screens/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -43,7 +44,7 @@ class BottomNavBar extends StatelessWidget {
         body: PageView(
           controller: pageController,
           physics: const NeverScrollableScrollPhysics(),
-          children: [Home(), Community()],
+          children: [Home(), Community(), Settings()],
           onPageChanged: (index) {
             navBarController.selectedIndex.value = index;
           },

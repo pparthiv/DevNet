@@ -1,3 +1,4 @@
+import 'package:dev_net/common/widgets/user_skill_chip.dart';
 import 'package:dev_net/features/core/screens/home/widgets/home_header.dart';
 import 'package:dev_net/features/core/screens/home/widgets/home_search_bar.dart';
 import 'package:dev_net/features/core/screens/user_view/user_view.dart';
@@ -9,10 +10,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
-class IndivitualPersonNearYouCard extends StatelessWidget {
-  const IndivitualPersonNearYouCard({
+class CardDesign extends StatelessWidget {
+  const CardDesign({
     super.key,
+    this.isUser = true,
+    required this.onTap,
   });
+
+  final bool isUser; // as used for user and project
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +37,7 @@ class IndivitualPersonNearYouCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // Image, Name, Domain
-              const Row(
+              Row(
                 children: [
                   CircleAvatar(
                     backgroundImage: AssetImage(MyAppImages.userProfile),
@@ -50,13 +56,15 @@ class IndivitualPersonNearYouCard extends StatelessWidget {
                             fontWeight: FontWeight.w800,
                             color: MyAppColors.textWhite),
                       ),
-                      Text(
-                        "Web Developer",
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: MyAppColors.textWhite),
-                      )
+                      isUser
+                          ? Text(
+                              "Web Developer",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: MyAppColors.textWhite),
+                            )
+                          : SizedBox(),
                     ],
                   ),
                 ],
@@ -64,7 +72,7 @@ class IndivitualPersonNearYouCard extends StatelessWidget {
 
               // Forward Button
               IconButton(
-                onPressed: () => Get.to(() => UserView()),
+                onPressed: onTap,
                 icon: const Icon(
                   Iconsax.tag_right,
                   color: MyAppColors.textWhite,
@@ -89,7 +97,7 @@ class IndivitualPersonNearYouCard extends StatelessWidget {
                 height: 1.25),
           ),
           const SizedBox(
-            height: 10,
+            height: 16,
           ),
 
           // Person's Skills
@@ -102,8 +110,8 @@ class IndivitualPersonNearYouCard extends StatelessWidget {
               const SizedBox(
                 width: 5,
               ),
-              const Text(
-                "Skills",
+              Text(
+                isUser ? "Skills" : "Tech Used",
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
@@ -119,20 +127,10 @@ class IndivitualPersonNearYouCard extends StatelessWidget {
             runSpacing: 5,
             children: [
               for (int i = 0; i < 5; i++) ...[
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
-                  decoration: BoxDecoration(
-                      color: MyAppColors.textWhite.withOpacity(0.8),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(width: 0.4)),
-                  child: const Text(
-                    "Java Script",
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: Color.fromARGB(255, 34, 122, 245)),
-                  ),
+                UserSkillChips(
+                  horizontalSpacing: 8,
+                  verticalSpacing: 7,
+                  isUserCardDesign: true,
                 )
               ]
             ],
