@@ -79,7 +79,7 @@ async def scrape_projects(soup: BeautifulSoup)->List[str]:
 
 async def generate_skills(input_data: dict):
 
-    llm = HuggingFaceEndpoint(repo_id='mistralai/Mistral-7B-Instruct-v0.2', temperature=0.1, huggingfacehub_api_token="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")
+    llm = HuggingFaceEndpoint(repo_id='mistralai/Mistral-7B-Instruct-v0.2', temperature=0.1, huggingfacehub_api_token=os.environ["TOKEN"])
     skills = []
 
     template = """Extract and list all the programming skills mentioned in the LinkedIn experiences, certificates, and projects. Provide only the skills as bullet points without any additional information in an array.
@@ -165,7 +165,7 @@ async def generate_summary(gen_skills, input_data):
         template=template,
         input_variables=['skills', 'description', 'header']
     )
-    llm = HuggingFaceEndpoint(repo_id='mistralai/Mistral-7B-Instruct-v0.2', temperature=0.1, huggingfacehub_api_token="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")
+    llm = HuggingFaceEndpoint(repo_id='mistralai/Mistral-7B-Instruct-v0.2', temperature=0.1, huggingfacehub_api_token=os.environ["TOKEN"])
     skills = gen_skills
 
     llm_chain = LLMChain(
