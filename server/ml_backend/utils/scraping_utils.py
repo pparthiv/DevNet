@@ -12,6 +12,8 @@ from langchain.chains.llm import LLMChain
 import random
 from typing import List
 
+load_dotenv()
+
 
 async def scrape_name(soup: BeautifulSoup)->str:
     name = soup.select_one("h1.top-card-layout__title.font-sans.text-lg.font-bold.leading-open.text-color-text.mb-0")
@@ -79,19 +81,18 @@ async def scrape_projects(soup: BeautifulSoup)->List[str]:
 
 async def generate_skills(input_data: dict):
 
-    llm = HuggingFaceEndpoint(repo_id='mistralai/Mistral-7B-Instruct-v0.2', temperature=0.1, huggingfacehub_api_token=os.environ["TOKEN"])
+    llm = HuggingFaceEndpoint(repo_id='mistralai/Mistral-7B-Instruct-v0.2', temperature=0.2, huggingfacehub_api_token=os.environ["TOKEN"])
     skills = []
 
-    template = """Extract and list all the programming skills mentioned in the LinkedIn experiences, certificates, and projects. Provide only the skills as bullet points without any additional information in an array.
+    template = """Extract and list all the programming skills mentioned in the LinkedIn experiences and certificates. Provide only the skills as bullet points without any additional information in an array.
         Experiences: {exps},
-        Certificates: {certs},
-        Projects: {projs}
+        Certificates: {certs}
         Programming Skills:
     """
 
     prompt = PromptTemplate(
         template=template,
-        input_variables=['exps', 'certs', 'projs']
+        input_variables=['exps', 'certs']
     )
 
     llm_chain = LLMChain(
@@ -99,7 +100,7 @@ async def generate_skills(input_data: dict):
         llm=llm
     )
     
-    res = llm_chain.run({'exps': input_data["Experiences"], 'certs': input_data["Certificates"], 'projs': input_data["Projects"]})
+    res = llm_chain.run({'exps': input_data["Experiences"], 'certs': input_data["Certificates"]})
 
     cleaned_str = res.strip(" []")
     skills = cleaned_str.split("', '")
@@ -134,7 +135,7 @@ async def scrapped_data(url: str):
         header = await scrape_header(soup)
         exps = await scrape_exp(soup)
         certs = await scrape_certs(soup)
-        projs = await scrape_projects(soup)
+        # projs = await scrape_projects(soup)
         
         data = {
             "Name": name,
@@ -142,14 +143,14 @@ async def scrapped_data(url: str):
             "Summary": summary,
             "Experiences": exps,
             "Certificates": certs,
-            "Projects": projs
+            # "Projects": projs
         }
         
         return data
 
 
 async def generate_summary(gen_skills, input_data):
-    template = """Given the following list of programming and technical skills, generate a recruiter's summary highlighting the important areas of expertise of the programmer. Emphasize the key strengths and areas where the programmer excels all as a paragraph of less than 150 words.
+    template = """Given the following list of programming and technical skills, generate a recruiter's summary highlighting the important areas of expertise of the programmer. Emphasize the key strengths and areas where the programmer excels all as a paragraph of less than 80 words.
 
         Skills:
         {skills}
