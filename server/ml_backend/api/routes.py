@@ -76,7 +76,7 @@ async def create_summary(input_data: linkedin_url):
         generated_summary = await generate_summary(generated_skills, scrapped_info)
 
 
-        return JSONResponse(content={"detail": "New summary generated successfully", "info": scrapped_info, "skills": generated_skills, "Gen_Summary": generated_summary}, status_code=200)
+        return JSONResponse(content={"detail": "New summary generated successfully", "info": scrapped_info, "skills": generated_skills, "gen_summary": generated_summary}, status_code=200)
 
     except Exception as e:
         traceback.print_exc()
