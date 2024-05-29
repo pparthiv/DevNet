@@ -49,14 +49,23 @@ function App() {
   //   fetch();
   // }, []);
 
-  console.log("lol");
-  console.log(user);
-
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
+        <Routes>        
+
+            <Route
+                path="sign-in"
+                element={
+                  <SignIn
+                    user={user}
+                    setUser={setUser}
+                    setProjects={setProjects}
+                  />
+                }
+              />
+            <Route path="sign-up" element={<SignUp />} />
+            <Route path="/" element={<SharedLayout />}>
             {/* <Route index element={<div>Home</div>} /> */}
             <Route
               index
@@ -75,19 +84,6 @@ function App() {
                 </ProtectedRoute>
               }
             />
-
-            <Route
-              path="sign-in"
-              element={
-                <SignIn
-                  user={user}
-                  setUser={setUser}
-                  setProjects={setProjects}
-                />
-              }
-            />
-
-            <Route path="sign-up" element={<SignUp />} />
 
             {/* <Route path="/auth/*" element={<Auth />} /> */}
             {/* <Route

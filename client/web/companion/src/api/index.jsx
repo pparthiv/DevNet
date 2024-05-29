@@ -54,7 +54,7 @@ export const fetchUserById = async (userID) => {
     const querySnapshot = await getDocs(q);
 
     const filteredData = querySnapshot.docs.map((doc) => ({
-      project_id: doc.id,
+      user_id: doc.id,
       ...doc.data(),
     }));
 
