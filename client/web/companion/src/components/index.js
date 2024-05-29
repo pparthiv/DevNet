@@ -1,3 +1,5 @@
 import Sidebar from "./Sidebar";
+import PieChart from "./Piechart";
+import Header from "./Header";
 
-export { Sidebar };
+export { Sidebar, PieChart, Header };
