@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../configs/firebase";
 import { setDoc, doc } from "firebase/firestore";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import logo from "../assets/images/logo.png";
 
@@ -27,9 +27,9 @@ const SignUp = () => {
     e.preventDefault();
     try {
       if (password.length < 8) {
-        // toast.error("Password should be atleast 8 characters", {
-        //   position: "bottom-center",
-        // });
+        toast.error("Password should be atleast 8 characters", {
+          position: "bottom-center",
+        });
         return;
       }
       await createUserWithEmailAndPassword(auth, email, password);
@@ -47,10 +47,10 @@ const SignUp = () => {
         });
       }
       console.log("User Created Successfully");
-      // toast.success("User Created Successfully !!", { position: "top-center" });
+      toast.success("User Created Successfully !!", { position: "top-center" });
     } catch (error) {
       console.log(error.message);
-      // toast.error("User Already Registered", { position: "bottom-center" });
+      toast.error("User Already Registered", { position: "bottom-center" });
     }
   };
 
