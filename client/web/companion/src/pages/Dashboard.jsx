@@ -52,11 +52,7 @@ const Dashboard = ({ className, user, projects }) => {
   // useEffect(() => {
   //   fetch();
   // }, []);
-
-  console.log("lol");
-  console.log(user);
   return (
-    <>
       <main className={`${className} col-span-4 grid gap-4 p-4`}>
         <section className="grid grid-cols-3 gap-4">
           <article className=" col-span-2 flex flex-col gap-4 rounded-lg bg-blue-600 p-4 text-slate-200">
@@ -160,4 +156,6 @@ const Dashboard = ({ className, user, projects }) => {
     </main>
   );
 };
+
+
 export default Dashboard;
