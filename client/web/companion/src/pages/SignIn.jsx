@@ -7,7 +7,7 @@ import {
   FaTwitter,
   FaRegEnvelope,
 } from "react-icons/fa";
-import { MdLockOutline } from "react-icons/md";
+import { RiLockPasswordLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../configs/firebase";
 import {
@@ -17,7 +17,7 @@ import {
 } from "firebase/auth";
 
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
-// import {toast} from 'react-toastify';
+import {toast} from 'react-toastify';
 
 import { fetchUserById, fetchProjects } from "../api";
 
@@ -50,10 +50,10 @@ const SignIn = ({ user, setUser, setProjects }) => {
       );
       console.log("User Logged In Successfully");
       navigate("/");
-      // toast.success("User Logged In Successfully !!", { position: "top-center" });
+      toast.success("User Logged In Successfully !!", { position: "top-center" });
     } catch (error) {
       console.log(error.message);
-      // toast.error("Invalid Credentials", { position: "bottom-center" });
+      toast.error("Invalid Credentials", { position: "bottom-center" });
     }
   };
 
@@ -63,9 +63,9 @@ const SignIn = ({ user, setUser, setProjects }) => {
       console.log(result);
       if (result.user) {
         setUser(result.user);
-        // toast.success("User Logged In Successfully !!", {
-        //   position: "top-center",
-        // });
+        toast.success("User Logged In Successfully !!", {
+          position: "top-center",
+        });
         navigate("/");
       }
     });
@@ -123,12 +123,12 @@ const SignIn = ({ user, setUser, setProjects }) => {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
-                <div className="flex w-64 items-center rounded-xl bg-gray-100 p-2">
-                  <MdLockOutline className="m-2 text-gray-400" />
+                <div className="flex w-61 items-center rounded-xl bg-gray-100 p-2">
+                <RiLockPasswordLine className=" text-gray-400" />
                   <input
                     type={showPassword ? "text" : "password"}
                     name="password"
-                    placeholder="password"
+                    placeholder="Password"
                     className="flex-1 bg-gray-100 text-sm outline-none"
                     onChange={(e) => setPassword(e.target.value)}
                   />

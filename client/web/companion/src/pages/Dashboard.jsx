@@ -51,8 +51,8 @@ const Dashboard = ({ className, user, projects }) => {
   //   fetch();
   // }, []);
 
-  console.log("lol");
-  console.log(user);
+  // console.log("lol");
+  // console.log(user);
   return (
     <main className={`${className} col-span-4 grid gap-4 p-4`}>
       <div className="flex items-center gap-2">
@@ -104,7 +104,7 @@ const Dashboard = ({ className, user, projects }) => {
             <article>HTML</article> */}
             </main>
           </footer>
-          <footer className=" grid gap-4 text-base font-bold text-white">
+          {/* <footer className=" grid gap-4 text-base font-bold text-white">
             <header className=" flex items-center gap-4">
               <FaTable className=" text-xl" />
               <h2>Projects</h2>
@@ -120,7 +120,7 @@ const Dashboard = ({ className, user, projects }) => {
                 </article>
               ))}
             </main>
-          </footer>
+          </footer> */}
         </article>
         <article className=" grid grid-rows-3 gap-4">
           <div className=" flex items-center justify-between gap-4 rounded-lg bg-slate-200 p-4 text-3xl font-bold">
