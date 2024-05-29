@@ -38,7 +38,7 @@ const Dashboard = ({ className, user, projects }) => {
               {user.skills.map((skill, index) => (
                 <article
                   key={index}
-                  className=" rounded-lg bg-slate-200 p-4 py-2"
+                  className=" rounded-lg bg-gray-200 p-4 transition duration-300 hover:bg-green-600 hover:text-white"
                 >
                   {skill}
                 </article>
