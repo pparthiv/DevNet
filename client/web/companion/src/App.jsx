@@ -8,8 +8,8 @@ import {
   SharedLayout,
   Projects,
 } from "./pages";
-// import { ToastContainer } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect } from "react";
 
 function App() {
@@ -48,6 +48,9 @@ function App() {
   // useEffect(() => {
   //   fetch();
   // }, []);
+
+  console.log("lol");
+  console.log(user);
 
   return (
     <>
@@ -92,7 +95,7 @@ function App() {
             /> */}
           </Route>
         </Routes>
-        {/* <ToastContainer /> */}
+        <ToastContainer />
       </BrowserRouter>
     </>
   );
