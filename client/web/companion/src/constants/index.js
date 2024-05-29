@@ -9,9 +9,9 @@ export const navLinks = [
   },
   {
     id: 3,
-    title: "Sign In",
+    title: "Log Out",
     icon: FaUser,
-    path: "/sign-in",
+    path: "/",
   },
   {
     id: 4,
