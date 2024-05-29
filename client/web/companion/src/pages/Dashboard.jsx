@@ -52,45 +52,41 @@ const Dashboard = ({ className, user, projects }) => {
   // useEffect(() => {
   //   fetch();
   // }, []);
-
-  console.log("lol");
-  console.log(user);
   return (
-    <>
-      <main className={`${className} col-span-4 grid gap-4 p-4`}>
-        <section className="grid grid-cols-3 gap-4">
-          <article className=" col-span-2 flex flex-col gap-4 rounded-lg bg-blue-600 p-4 text-slate-200">
-            <header className=" flex items-center gap-4 border-b border-slate-200 pb-4">
-              <img
-                src={user.profile_url_compress}
-                className=" aspect-square w-20 rounded-full bg-slate-200"
-              ></img>
-              <div>
-                <h2 className=" text-3xl font-bold text-white">
-                  {user.first_name} {user.last_name}
-                </h2>
-                <p className=" ">{user.field}</p>
-              </div>
-              <FaChevronRight className=" text-3xl" />
+    <main className={`${className} col-span-4 grid gap-4 p-4`}>
+      <section className="grid grid-cols-3 gap-4">
+        <article className=" col-span-2 flex flex-col gap-4 rounded-lg bg-blue-600 p-4 text-slate-200">
+          <header className=" flex items-center gap-4 border-b border-slate-200 pb-4">
+            <img
+              src={user.profile_url_compress}
+              className=" aspect-square w-20 rounded-full bg-slate-200"
+            ></img>
+            <div>
+              <h2 className=" text-3xl font-bold text-white">
+                {user.first_name} {user.last_name}
+              </h2>
+              <p className=" ">{user.field}</p>
+            </div>
+            <FaChevronRight className=" text-3xl" />
+          </header>
+          <main>
+            <p className=" text-xl">{user.user_desc}</p>
+          </main>
+          <footer className=" grid gap-4 text-base font-bold text-white">
+            <header className=" flex items-center gap-4">
+              <FaUser className=" text-xl" />
+              <h2>Skills</h2>
             </header>
-            <main>
-              <p className=" text-xl">{user.user_desc}</p>
-            </main>
-            <footer className=" grid gap-4 text-base font-bold text-white">
-              <header className=" flex items-center gap-4">
-                <FaUser className=" text-xl" />
-                <h2>Skills</h2>
-              </header>
-              <main className=" flex gap-4 text-blue-600">
-                {user.skills.map((skill, index) => (
-                  <article
-                    key={index}
-                    className=" rounded-lg bg-slate-200 p-4 py-2"
-                  >
-                    {skill}
-                  </article>
-                ))}
-                {/* <article>HTML</article>
+            <main className=" flex gap-4 text-blue-600">
+              {user.skills.map((skill, index) => (
+                <article
+                  key={index}
+                  className=" rounded-lg bg-slate-200 p-4 py-2"
+                >
+                  {skill}
+                </article>
+              ))}
+              {/* <article>HTML</article>
             <article>HTML</article>
             <article>HTML</article> */}
             </main>
@@ -120,15 +116,38 @@ const Dashboard = ({ className, user, projects }) => {
               {projects.length}
             </div>
           </div>
-          <div className=" flex items-center justify-between gap-4 rounded-lg bg-slate-200 p-4 text-3xl font-bold">
-            <span className="text-blue-600">Colabs</span>
-            <div className=" flex aspect-square w-12 items-center justify-center rounded-full bg-blue-600 font-bold text-white ">
-              {projects.reduce(
-                (acc, curr) => acc + curr.colab_requests.length,
-                0,
-              )}
+        </article>
+      </section>
+      <section className="grid grid-cols-3 gap-4">
+        <article className=" col-span-1 flex flex-col gap-4 rounded-lg bg-blue-600 p-4 text-slate-200">
+          <header className=" flex items-center gap-4 border-b border-slate-200 pb-4">
+            <div>
+              <h2 className=" text-3xl font-bold text-white">
+              Tech Stack Distribution
+              </h2>
             </div>
-          </div>
+          </header>
+          <main>
+            <p className=" text-xl">Illustrates the proportion of various technologies utilized in a project's development.</p>
+          </main>
+          <footer className=" grid gap-4 text-base font-bold text-white">
+            <PieChart {...user}/>
+          </footer>          
+        </article>
+        <article className=" col-span-1 flex flex-col gap-4 rounded-lg bg-blue-600 p-4 text-slate-200">
+          <header className=" flex items-center gap-4 border-b border-slate-200 pb-4">
+            <div>
+              <h2 className=" text-3xl font-bold text-white">
+              Skillset Contribution through Projects
+              </h2>
+            </div>
+          </header>
+          <main>
+            <p className=" text-xl">Highlights the significance of current different skills across multiple projects.</p>
+          </main>
+          <footer className=" grid gap-4 text-base font-bold text-white">
+            <BarChart {...user}/>
+          </footer>          
         </article>
       </section>
       <section className=" flex flex-col gap-4 ">
@@ -160,4 +179,5 @@ const Dashboard = ({ className, user, projects }) => {
     </main>
   );
 };
+
 export default Dashboard;
