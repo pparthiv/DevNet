@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import logo from "../assets/images/logo.png";
 import { PieChart } from "../components";
 import { BarChart } from "../components/Bar";
+import { FaArrowRight } from "react-icons/fa";
 
 const Dashboard = ({ className, user, projects }) => {
   const handleRefresh = () => {
@@ -46,7 +47,7 @@ const Dashboard = ({ className, user, projects }) => {
               {user.skills.map((skill, index) => (
                 <article
                   key={index}
-                  className="rounded-lg bg-slate-200 p-4 py-2 shadow-sm hover:bg-blue-300 transition"
+                  className=" rounded-lg bg-gray-200 p-4 transition duration-300 hover:bg-green-600 hover:text-white"
                 >
                   {skill}
                 </article>
