@@ -5,10 +5,12 @@ import logo from "../assets/images/logo.png";
 import { PieChart } from "../components";
 import { BarChart } from "../components/Bar";
 import { FaArrowRight } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const Dashboard = ({ className, user, projects }) => {
   const handleRefresh = () => {
     window.location.reload();
+    toast.success("User Logged Out Successfully !!", { position: "top-center" });
   };
 
   return (
@@ -31,6 +33,7 @@ const Dashboard = ({ className, user, projects }) => {
             <button
               onClick={handleRefresh}
               className="ml-auto flex items-center gap-2 rounded bg-white p-2 text-blue-600 hover:bg-blue-100 transition"
+              
             >
               <span>Logout</span>
             </button>
