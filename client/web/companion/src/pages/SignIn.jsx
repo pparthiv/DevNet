@@ -168,13 +168,13 @@ const SignIn = ({ user, setUser, setProjects }) => {
             <h2 className="mb-2 text-3xl font-bold">Hi, there!</h2>
             <div className="mb-2 inline-block w-10 border-2 border-white"></div>
             <p className="mb-10">
-              Fill up the below information and start exploring.
+              Go to the Mobile Application and Get registered today!
             </p>
-            <Link to="/sign-up">
+            {/* <Link to="/sign-up">
               <p className="inline-block rounded-full border-2 border-solid border-white px-12 py-2 font-bold text-white hover:bg-white hover:text-blue-500">
                 Sign Up
               </p>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </main>
