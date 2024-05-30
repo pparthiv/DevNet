@@ -1,180 +1,162 @@
 import { FaUser, FaChevronRight, FaTable } from "react-icons/fa6";
-
 import { fetchUserById, fetchProjects } from "../api";
 import { useEffect, useState } from "react";
-
 import logo from "../assets/images/logo.png";
 import { PieChart } from "../components";
 import { BarChart } from "../components/Bar";
 
 const Dashboard = ({ className, user, projects }) => {
-  // const [user, setUser] = useState({
-  //   profile_url_compress: "",
-  //   first_name: "Will",
-  //   last_name: "Smith",
-  //   field: "App Developer",
-  //   user_desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic",
-  //   skills: ["HTML", "CSS", "JavaScript", "React", "Node.js"],
-  //   projects: [
-  //     {
-  //       project_id: "1",
-  //       project_name: "Project 1",
-  //       project_desc:
-  //         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic",
-  //     },
-  //   ],
-  // });
+  const handleRefresh = () => {
+    window.location.reload();
+  };
 
-  // const [projects, setProjects] = useState([
-  //   {
-  //     colab_requests: [
-  //       {
-  //         user_message:
-  //           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic",
-  //       },
-  //     ],
-  //   },
-  // ]);
-
-  // const fetch = async () => {
-  //   // const data = await fetchUserById("FvQAbthDClac737BMMzMGfa72UF3");
-  //   // console.log(data);
-  //   const data2 = await fetchProjects();
-  //   setUser(data[0]);
-
-  //   setProjects(
-  //     data2.filter(
-  //       (proj) => proj.project_owner_id === "FvQAbthDClac737BMMzMGfa72UF3",
-  //     ),
-  //   );
-  // };
-
-  // useEffect(() => {
-  //   fetch();
-  // }, []);
   return (
-    <main className={`${className} col-span-4 grid gap-4 p-4`}>
+    <main className={`${className} col-span-4 grid gap-4 p-4 bg-gray-100`}>
       <section className="grid grid-cols-3 gap-4">
-        <article className=" col-span-2 flex flex-col gap-4 rounded-lg bg-blue-600 p-4 text-slate-200">
-          <header className=" flex items-center gap-4 border-b border-slate-200 pb-4">
+        <article className="col-span-2 flex flex-col gap-4 rounded-lg bg-blue-600 p-4 text-slate-200 shadow-lg">
+          <header className="flex items-center gap-4 border-b border-slate-200 pb-4">
             <img
               src={user.profile_url_compress}
-              className=" aspect-square w-20 rounded-full bg-slate-200"
-            ></img>
-            <div>
-              <h2 className=" text-3xl font-bold text-white">
+              className="aspect-square w-20 rounded-full bg-slate-200"
+              alt={`${user.first_name} ${user.last_name}`}
+            />
+            <div className="flex-1">
+              <h2 className="text-3xl font-bold text-white">
                 {user.first_name} {user.last_name}
               </h2>
-              <p className=" ">{user.field}</p>
+              <p>{user.field}</p>
             </div>
-            <FaChevronRight className=" text-3xl" />
+            <FaChevronRight className="text-3xl" />
+            <button
+              onClick={handleRefresh}
+              className="ml-auto flex items-center gap-2 rounded bg-white p-2 text-blue-600 hover:bg-blue-100 transition"
+            >
+              <span>Logout</span>
+            </button>
           </header>
           <main>
-            <p className=" text-xl">{user.user_desc}</p>
+            <p className="text-xl">{user.user_desc}</p>
           </main>
-          <footer className=" grid gap-4 text-base font-bold text-white">
-            <header className=" flex items-center gap-4">
-              <FaUser className=" text-xl" />
+          <footer className="grid gap-4 text-base font-bold text-white">
+            <header className="flex items-center gap-4">
+              <FaUser className="text-xl" />
               <h2>Skills</h2>
             </header>
-            <main className=" flex gap-4 text-blue-600">
+            <main className="flex gap-4 text-blue-600 flex-wrap">
               {user.skills.map((skill, index) => (
                 <article
                   key={index}
-                  className=" rounded-lg bg-slate-200 p-4 py-2"
+                  className="rounded-lg bg-slate-200 p-4 py-2 shadow-sm hover:bg-blue-300 transition"
                 >
                   {skill}
                 </article>
               ))}
-              {/* <article>HTML</article>
-            <article>HTML</article>
-            <article>HTML</article> */}
             </main>
           </footer>
-          <footer className=" grid gap-4 text-base font-bold text-white">
-            <header className=" flex items-center gap-4">
-              <FaTable className=" text-xl" />
-              <h2>Projects</h2>
+        </article>
+        <article className="flex flex-col gap-4">
+          <section className="flex flex-col gap-4">
+            <header className="flex items-center justify-between rounded-lg bg-blue-600 p-4 shadow-lg">
+              <h2 className="text-2xl font-bold text-white">Active Projects</h2>
+              <div className="flex aspect-square w-12 items-center justify-center rounded-full bg-white font-bold text-blue-600">
+                {projects.length}
+              </div>
             </header>
-            <main className=" flex gap-4 text-blue-600">
-              {user.projects.map((project, index) => (
+            <main className="grid gap-4 text-base font-bold text-blue-600">
+              {projects.map((project, index) => (
                 <article
                   key={project.project_id}
-                  className=" max-w-60 rounded-lg bg-slate-200 p-4 py-2"
+                  className="rounded-lg bg-white p-4 shadow-md transition hover:shadow-lg"
                 >
-                  <span>{project.project_name}</span>
-                  <details>{project.project_desc}</details>
+                  <header className="flex items-center gap-2">
+                    <h3 className="text-xl font-bold text-blue-600">
+                      {project.project_name}
+                    </h3>
+                  </header>
+                  <details>
+                    <summary className="cursor-pointer text-blue-600">
+                      Details
+                    </summary>
+                    <div className="mt-2 rounded-lg bg-blue-100 p-2 text-blue-800">
+                      {project.project_desc}
+                    </div>
+                  </details>
                 </article>
               ))}
             </main>
+          </section>
+          <section className="flex flex-col gap-4">
+            <header className="rounded-lg bg-blue-600 p-4 shadow-lg">
+              <h2 className="text-2xl font-bold text-white">Colab Requests</h2>
+            </header>
+            <main className="flex flex-wrap gap-4">
+              {projects.map((project, index) => (
+                <article className="rounded-lg bg-white p-4 shadow-md transition hover:shadow-lg" key={index}>
+                  <header className="flex items-center gap-2">
+                    <h3 className="text-xl font-bold text-blue-600">
+                      {project.project_name}
+                    </h3>
+                    <div className="flex aspect-square w-6 items-center justify-center rounded-full bg-blue-600 font-bold text-white">
+                      {project.colab_requests.length}
+                    </div>
+                  </header>
+                  <details>
+                    {project.colab_requests.map((request, idx) => (
+                      <div
+                        className="mb-2 rounded-lg bg-blue-100 p-2 text-blue-800"
+                        key={idx}
+                      >
+                        "{request.user_message}"
+                      </div>
+                    ))}
+                  </details>
+                </article>
+              ))}
+            </main>
+          </section>
+        </article>
+      </section>
+
+      <section className="flex flex-col gap-6 md:flex-row">
+        <article className="flex flex-1 flex-col gap-6 rounded-lg bg-blue-600 p-6 text-slate-200 shadow-lg">
+          <header className="flex items-center gap-4 border-b border-slate-200 pb-4">
+            <div>
+              <h2 className="text-3xl font-bold text-white">
+                Tech Stack Distribution
+              </h2>
+            </div>
+          </header>
+          <main>
+            <p className="text-xl">
+              Illustrates the proportion of various technologies used.
+            </p>
+          </main>
+          <footer className="flex h-full items-center justify-center text-base font-bold text-white">
+            <div className="h-full w-full">
+              <PieChart {...user} />
+            </div>
           </footer>
         </article>
-        <article className=" grid grid-rows-3 gap-4">
-          <div className=" flex items-center justify-between gap-4 rounded-lg bg-slate-200 p-4 text-3xl font-bold">
-            <span className="text-blue-600">Active Projects</span>
-            <div className=" flex aspect-square w-12 items-center justify-center rounded-full bg-blue-600 font-bold text-white ">
-              {projects.length}
-            </div>
-          </div>
-        </article>
-      </section>
-      <section className="grid grid-cols-3 gap-4">
-        <article className=" col-span-1 flex flex-col gap-4 rounded-lg bg-blue-600 p-4 text-slate-200">
-          <header className=" flex items-center gap-4 border-b border-slate-200 pb-4">
+
+        <article className="flex flex-1 flex-col gap-6 rounded-lg bg-blue-600 p-6 text-slate-200 shadow-lg">
+          <header className="flex items-center gap-4 border-b border-slate-200 pb-4">
             <div>
-              <h2 className=" text-3xl font-bold text-white">
-              Tech Stack Distribution
+              <h2 className="text-3xl font-bold text-white">
+                Skillset Contribution through Projects
               </h2>
             </div>
           </header>
           <main>
-            <p className=" text-xl">Illustrates the proportion of various technologies utilized in a project's development.</p>
+            <p className="text-xl">
+              Highlights the significance of different skills across multiple projects.
+            </p>
           </main>
-          <footer className=" grid gap-4 text-base font-bold text-white">
-            <PieChart {...user}/>
-          </footer>          
-        </article>
-        <article className=" col-span-1 flex flex-col gap-4 rounded-lg bg-blue-600 p-4 text-slate-200">
-          <header className=" flex items-center gap-4 border-b border-slate-200 pb-4">
-            <div>
-              <h2 className=" text-3xl font-bold text-white">
-              Skillset Contribution through Projects
-              </h2>
+          <footer className="flex h-full items-center justify-center text-base font-bold text-white">
+            <div className="h-full w-full">
+              <BarChart {...user} />
             </div>
-          </header>
-          <main>
-            <p className=" text-xl">Highlights the significance of current different skills across multiple projects.</p>
-          </main>
-          <footer className=" grid gap-4 text-base font-bold text-white">
-            <BarChart {...user}/>
-          </footer>          
+          </footer>
         </article>
-      </section>
-      <section className=" flex flex-col gap-4 ">
-        <header className="rounded-lg bg-blue-600 p-4">
-          <h2 className=" text-2xl font-bold text-white">Colab Requests</h2>
-        </header>
-        <main className=" flex flex-wrap gap-4">
-          {projects.map((project, index) => (
-            <article className=" rounded-lg bg-slate-200 p-4">
-              <header className="flex items-center gap-2">
-                <h3 className=" text-xl font-bold text-blue-600">
-                  {project.project_name}{" "}
-                </h3>
-                <div className=" flex aspect-square w-6 items-center justify-center rounded-full bg-blue-600 font-bold text-white ">
-                  {project.colab_requests.length}
-                </div>
-              </header>
-              <details>
-                {project.colab_requests.map((request) => (
-                  <div className=" mb-2 rounded-lg bg-blue-600 p-2 text-white ">
-                    "{request.user_message}"
-                  </div>
-                ))}
-              </details>
-            </article>
-          ))}
-        </main>
       </section>
     </main>
   );
