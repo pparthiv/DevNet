@@ -14,7 +14,7 @@ const Dashboard = ({ className, user, projects }) => {
   return (
     <main className={`${className} col-span-4 grid gap-4 p-4 bg-gray-100`}>
       <section className="grid grid-cols-3 gap-4">
-        <article className="col-span-2 flex flex-col gap-4 rounded-lg bg-blue-600 p-4 text-slate-200 shadow-lg">
+        <article className="col-span-2 flex flex-col gap-4 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 p-4 text-slate-200 shadow-xl transition-transform transform hover:scale-105">
           <header className="flex items-center gap-4 border-b border-slate-200 pb-4">
             <img
               src={user.profile_url_compress}
@@ -47,7 +47,7 @@ const Dashboard = ({ className, user, projects }) => {
               {user.skills.map((skill, index) => (
                 <article
                   key={index}
-                  className=" rounded-lg bg-gray-200 p-4 transition duration-300 hover:bg-green-600 hover:text-white"
+                  className="rounded-lg bg-gray-200 p-4 transition duration-300 hover:bg-green-600 hover:text-white hover:scale-105"
                 >
                   {skill}
                 </article>
@@ -57,7 +57,7 @@ const Dashboard = ({ className, user, projects }) => {
         </article>
         <article className="flex flex-col gap-4">
           <section className="flex flex-col gap-4">
-            <header className="flex items-center justify-between rounded-lg bg-blue-600 p-4 shadow-lg">
+            <header className="flex items-center justify-between rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 p-4 shadow-lg transition-transform transform hover:scale-105">
               <h2 className="text-2xl font-bold text-white">Active Projects</h2>
               <div className="flex aspect-square w-12 items-center justify-center rounded-full bg-white font-bold text-blue-600">
                 {projects.length}
@@ -67,7 +67,7 @@ const Dashboard = ({ className, user, projects }) => {
               {projects.map((project, index) => (
                 <article
                   key={project.project_id}
-                  className="rounded-lg bg-white p-4 shadow-md transition hover:shadow-lg"
+                  className="rounded-lg bg-white p-4 shadow-md transition duration-300 hover:shadow-lg hover:scale-105"
                 >
                   <header className="flex items-center gap-2">
                     <h3 className="text-xl font-bold text-blue-600">
@@ -87,12 +87,15 @@ const Dashboard = ({ className, user, projects }) => {
             </main>
           </section>
           <section className="flex flex-col gap-4">
-            <header className="rounded-lg bg-blue-600 p-4 shadow-lg">
+            <header className="rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 p-4 shadow-lg transition-transform transform hover:scale-105">
               <h2 className="text-2xl font-bold text-white">Colab Requests</h2>
             </header>
             <main className="flex flex-wrap gap-4">
               {projects.map((project, index) => (
-                <article className="rounded-lg bg-white p-4 shadow-md transition hover:shadow-lg" key={index}>
+                <article
+                  className="rounded-lg bg-white p-4 shadow-md transition duration-300 hover:shadow-lg hover:scale-105"
+                  key={index}
+                >
                   <header className="flex items-center gap-2">
                     <h3 className="text-xl font-bold text-blue-600">
                       {project.project_name}
@@ -119,7 +122,7 @@ const Dashboard = ({ className, user, projects }) => {
       </section>
 
       <section className="flex flex-col gap-6 md:flex-row">
-        <article className="flex flex-1 flex-col gap-6 rounded-lg bg-blue-600 p-6 text-slate-200 shadow-lg">
+        <article className="flex flex-1 flex-col gap-6 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 p-6 text-slate-200 shadow-lg transition-transform transform hover:scale-105">
           <header className="flex items-center gap-4 border-b border-slate-200 pb-4">
             <div>
               <h2 className="text-3xl font-bold text-white">
@@ -139,7 +142,7 @@ const Dashboard = ({ className, user, projects }) => {
           </footer>
         </article>
 
-        <article className="flex flex-1 flex-col gap-6 rounded-lg bg-blue-600 p-6 text-slate-200 shadow-lg">
+        <article className="flex flex-1 flex-col gap-6 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 p-6 text-slate-200 shadow-lg transition-transform transform hover:scale-105">
           <header className="flex items-center gap-4 border-b border-slate-200 pb-4">
             <div>
               <h2 className="text-3xl font-bold text-white">
